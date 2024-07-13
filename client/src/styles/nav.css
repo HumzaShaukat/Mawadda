@@ -1,0 +1,39 @@
+.container-fluid {
+  font-size: 25px;
+  background-color: rgba(190, 195, 196, 0.473);
+  margin-bottom: black 50px;
+  /* border-bottom: solid 3px rgb(211, 38, 139); */
+  
+}
+
+
+.nav-link {
+  margin: 0 10px;
+}
+
+.container-fluid .navbar-brand {
+  font-size: 40px;
+}
+
+.nav-item a {
+  color: black;
+  cursor: pointer;
+}
+
+.nav-item a:hover {
+  color: rgba(44, 2, 215, 0.867);
+}
+
+.logo {
+  width: 150px;
+  height: 110px;
+  border-radius: 100%;
+  border: dashed  2px rgb(211, 38, 139);
+}
+
+.collapse {
+  display: flex;
+  justify-content: center;
+}
+
+

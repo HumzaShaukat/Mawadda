@@ -1,0 +1,28 @@
+.signup,
+.login {
+  width: 80%;
+  margin-top: 50px;
+}
+
+Form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  margin: 60px 0px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.signupSubmit,
+.loginSubmit {
+  width: fit-content;
+  margin: 0px auto;
+}
+
+.input {
+  margin: 5px 0px 30px 0px;
+}
+
+.formText {
+  font-size: 20px;
+}

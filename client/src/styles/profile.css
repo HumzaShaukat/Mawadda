@@ -1,0 +1,86 @@
+.welcome {
+  font-size: 40px;
+  text-align: center;
+}
+
+.biopreferenceContainer {
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
+
+.sectionInfo {
+  font-size: 20px;
+  margin: 0 auto;
+}
+
+.biosection {
+  margin: 0px auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.imagepreference {
+  border-style: dotted;
+  margin: 0 10px 10px 0px;
+  margin-bottom: 30px;
+  border-radius: 20px;
+  height: fit-content;
+  background-color: rgba(255, 192, 203, 0.486);
+}
+
+.imagecontainer {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0px;
+}
+
+.bioTitle {
+  text-align: center;
+  font-size: 50px;
+  margin: 0px 0;
+  background-color: rgba(255, 192, 203, 0.486);
+  border: 10px ridge;
+}
+
+.preferenceTitle {
+  font-size: 40px;
+  margin: 20px 0;
+  text-align: center;
+}
+
+.preferences {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 10px ridge;
+  background-color: lightblue;
+}
+
+.section {
+  margin: 10px auto;
+  display: flex;
+  flex-wrap: wrap;
+  background-color: lightblue;
+  padding: 40px;
+  border-radius: 40px;
+  border-style: dotted;
+}
+
+.sectionTitle {
+  margin: 0, auto;
+  text-align: center;
+  width: 50%;
+}
+
+.addConnect {
+  margin: 20px auto;
+  text-align: center;
+}
+
+.connect-btn {
+  padding: 20px;
+  background-color: rgb(243, 234, 61);
+  border-radius: 20px;
+  font-size: 20px;
+}

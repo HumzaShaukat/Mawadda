@@ -1,0 +1,33 @@
+.preferenceText {
+  font-size: 30px;
+  font-weight: bolder;
+  color: darkgreen;
+}
+
+.preferenceGroup {
+  margin-bottom: 30px;
+  margin: 0 20px 30px 20px;
+}
+
+.preferenceForm {
+  background-color: rgba(60, 241, 69, 0.17);
+  border-style: dashed;
+  border-radius: 30px;
+  box-shadow: 15px 10px 10px 0 rgba(0, 0, 0, 0.337);
+  transition: 0.3s;
+}
+
+.preferenceSubmit {
+  width: fit-content;
+  margin: 0 auto;
+  background-color: darkgreen !important;
+}
+
+
+.uploadContainer {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

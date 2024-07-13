@@ -1,0 +1,343 @@
+.dashpage{
+  background-color: rgba(190, 195, 196, 0.473);
+  /* max-width:max-content; */
+}
+
+
+h3{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+
+  #dashwelcome {
+    width: 100%;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    background-color: rgba(46, 94, 126, 0.884);
+    color: rgb(247, 248, 206);
+    font-size: 32px;
+    text-align: center;
+    
+  }
+
+  li {
+    list-style: none;
+  }
+
+  #first {
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+  }
+
+#card1 {
+  border: solid grey 1px;
+  background-color: rgb(247, 247, 243);
+  margin-bottom: .5vh;
+}
+
+  #head1 {
+    background-color:rgba(66, 137, 184, 0.781);
+  }
+  
+
+  #head2 {
+    background-color:rgba(66, 137, 184, 0.781);
+  }
+
+  #connectTitle {
+    text-align: center;
+    background-color:rgba(66, 137, 184, 0.781);
+  }
+
+ 
+
+  #propic{
+    align-self: center;
+    height: 270px;
+  }
+
+  #second{
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    justify-items: center;
+  }
+
+
+
+  #third{
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+  }
+
+
+  #shell {
+    flex-wrap: wrap;
+  }
+ 
+  
+ 
+  
+  #profileSnip {
+    flex-direction: column;
+    align-content: center;
+    margin-right: 20px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+  
+  #usersPicture {
+    margin-top:0;
+    padding-top:0;
+    border-top: 0;
+    display: flex;
+    height: 280px;
+    width: 190px;
+    border-radius: 50%;
+    align-self: center;
+  }
+  
+  #usersPicture img{
+    border-radius: 50%;
+  }
+  
+  .dashDetails{
+    margin: 0;
+    padding: 0;
+    border: 0;
+    text-align: center;
+    font-size: 13px;
+    font-style: italic;
+  }
+  
+ #card2 {
+  border: solid grey 1px;
+  background-color: rgb(247, 247, 243);
+ } 
+ 
+  #bioSnip h4 {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    font-style: italic;
+  }
+
+  #imgBtn {
+    border: solid black 1px;
+    background-color:  rgba(46, 94, 126, 0.884);
+    /* background-color: rgb(110, 93, 93); */
+    margin-bottom: 20px;
+    margin-top: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  #imgBtn:hover {
+    background-color: lightgray;
+    color: rgb(87, 84, 84);
+  }
+  
+  #card3{
+    border: solid grey 1px;
+    background-color: rgb(247, 247, 243);
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+    max-width: 20vw;
+  }
+  
+  #connectionList {
+    display: flex;
+    width: 8vw;
+    height: 60vh;
+    border-left: solid lightgrey 1px;
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    justify-content: center;
+  }
+  
+  #connectionList h3{
+    display: flex;
+    text-indent: 5px;
+    margin-left:10px;
+    width: 300px;
+    text-align: center;
+  }
+
+  #mydashfriends {
+    display:flex;
+    height: 35vh;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+  }
+
+  
+  #dashFriends {
+
+    text-align: center;
+    width: 14vw;
+    margin-left: 1vw;
+    flex-direction: column;
+    justify-content: center;
+    height: 20vh;
+    overflow-y: scroll;
+  }
+  
+  .sliderimg {
+    width: 100%;
+    height: 20vh;
+    object-fit: cover;
+  }
+  
+  #connectionRequest {
+    margin-top: 1vh;
+    height: 19vh;
+    width:inherit;
+    justify-content: center;
+    align-content: center;
+
+    
+  }
+  
+  .sliderimgDash{
+    width: 20vw;
+  }
+  
+  .carousel-indicators li {
+    background-color: grey !important;
+  }
+  
+  .imgSlider {
+    display: flex;
+    margin-top: 10vh;
+    justify-content: center;
+  }
+  
+  #bioDiv {
+    display: flex;
+    flex-direction: column;
+    width: 30vw;
+    align-items: center;
+  }
+  
+  #bioDiv Button {
+    margin-top: 1vh;
+    max-width: 6vw;
+    max-height: 4vh;
+    font-size: 15px;
+  }
+  
+
+  .imgUpload{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10vh;
+  }
+  
+  .imgInput {
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    
+  }
+  .imgInput Button {
+    margin-top: 1vh;
+    max-width: 5vw;;
+  }
+  
+  .imgInput {
+    display: flex;
+    border: 1px black solid;
+    padding-top: 1vh;
+    padding-bottom: 1vh;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    border-radius: 15px;
+    align-items: center;
+  }
+
+  .dashpage {
+    justify-content: flex-start;
+  }
+
+  #connectLists {
+    overflow-y: scroll;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+#connectionRequest{
+  align-content: center;
+  height: 25vh;
+  width: 350px;
+  overflow-y: scroll;
+}
+
+  #dashFriends {
+    display: flex;
+    align-items: center;
+  
+  }
+
+  .eachfriend a {
+    width: 20vw;
+    /* align-content: center; */
+    text-align: center;
+    color: black;
+    margin-right: 2vh;
+    font-size: 18px;
+    text-indent: 20px;
+  }
+
+  .eachfriend {
+    width: 30vw;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: 1vh;
+    margin-left: 5vw;
+    float:left;
+  }
+
+  #removeBtn {
+    text-align: center;
+float: right;
+padding: 3px;
+border: solid black 1px;
+/* background-color: rgb(110, 93, 93); */
+background-color:  rgba(46, 94, 126, 0.884);
+  }
+
+  #removeBtn:hover {
+    background-color: lightgray;
+    color: rgb(87, 84, 84);
+  }
+
+.requestCard {
+  flex-direction: row;
+  margin-bottom: .5vh;
+  text-align: center;
+}
+
+  .requestCard a {
+    font-size: 18px;
+    margin-right: 5px;
+    margin-left: 10px;
+    margin-bottom: 50px;
+  
+  }
+
+  #reqFri {
+    color: black;
+  }
+
+  .acceptBtn{
+    margin-right: 3px;
+  }

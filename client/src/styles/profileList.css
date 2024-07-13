@@ -1,0 +1,89 @@
+#profilelistpage{
+  background-color: rgba(190, 195, 196, 0.473);
+    height: 100%;
+  display:flex;
+  flex-direction: column;
+  overflow-y: scroll;
+}
+
+
+#banner {
+    width: 100%;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    /* background-color: rgb(158, 126, 142);*/
+    background-color: rgba(46, 94, 126, 0.884);
+    color: rgb(247, 248, 206);
+    text-indent: 20px;
+    font-size: 32px;
+    text-align: center;
+  }
+
+  #cardHead{
+    height: 45px;
+    /* background-color:rgba(255, 192, 203, 0.709); */
+    background-color:rgba(66, 137, 184, 0.781);
+    color: black;
+  }
+
+  #cardHead a {
+    color: black;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+  }
+  #cardHead a:hover {
+    color: rgba(44, 2, 215, 0.867);
+  }
+
+  h4:hover{
+color: rgba(44, 2, 215, 0.867);
+  }
+
+
+  h4{
+    color :black;
+  }
+
+  a {
+    color: black;
+  }
+
+
+.plistPic {
+    margin-left: 5px;
+    margin-top: 5px;
+    width: 120px;
+    height: 120px;
+    margin-right: 2vw;
+    margin-bottom: 5px;
+    float: left;
+}
+
+#writtenInfo {
+    flex-direction: column;
+    text-align: center;
+    
+}
+
+#userCard {
+    width: 600px;
+    margin-bottom: 20px;
+    border: solid grey 2px;
+    background-color: rgb(247, 247, 243);
+}
+
+.profileList {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1 1 auto;
+}
+
+#plistinfo {
+    flex-direction: row;
+    display: inline-block;
+}
+
+.userInfo {
+    margin-left: 5vw;
+    overflow:hidden;
+}
