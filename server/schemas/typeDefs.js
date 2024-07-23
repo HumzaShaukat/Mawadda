@@ -27,7 +27,7 @@ const typeDefs = gql`
     aspectsOfFaith: [String!]
     timeline: String!
     userId: ID!
-    picture: [String!+]
+    picture: [String!]
   }
   type Bios {
     _id: ID!
@@ -84,11 +84,11 @@ const typeDefs = gql`
       lastName: String!
       email: String!
       password: String!
+      isAdmin: Boolean!
     ): Auth
 
-    delUser(
-
-    )
+    delUser(email: String!): User
+    delBio(userId: ID!): Bio
     login(email: String!, password: String!): Auth
 
     addBio(
@@ -131,17 +131,9 @@ const typeDefs = gql`
       picture: [String]
     ): Bio
 
-    addPreference(
-      ageMin: Int!
-      ageMax: Int!
-      location: String!
-    ): Preference
+    addPreference(ageMin: Int!, ageMax: Int!, location: String!): Preference
 
-    updatePreference(
-      ageMin: Int
-      ageMax: Int
-      location: String
-    ): Preference
+    updatePreference(ageMin: Int, ageMax: Int, location: String): Preference
 
     uploadFile(file: Upload!): File
   }

@@ -17,19 +17,21 @@ import auth from "../../utils/auth";
 const SignupForm = () => {
   //usenavigate declared as const; assists with routing between pages
   const navigate = useNavigate();
-  // set initial form state 
+  // set initial form state
   const [userFormData, setUserFormData] = useState({
-    username: "",
+    firstName: "",
+    lastName: "",
     email: "",
     password: "",
+    isAdmin: false,
   });
   // set state for form validation
   const [validated] = useState(false);
   // set state for alert
   const [showAlert, setShowAlert] = useState(false);
-//set state of add user mutation
+  //set state of add user mutation
   const [addUser, { error }] = useMutation(ADD_USER);
-//triggers alert if there is an error with the users form input
+  //triggers alert if there is an error with the users form input
   useEffect(() => {
     if (error) {
       setShowAlert(true);
@@ -37,22 +39,22 @@ const SignupForm = () => {
       setShowAlert(false);
     }
   }, [error]);
-//sets key value pairs of user input form to user data
+  //sets key value pairs of user input form to user data
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setUserFormData({ ...userFormData, [name]: value });
   };
-//function to handle user submitting the signup form
+  //function to handle user submitting the signup form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
-
+    console.log(userFormData);
     // check if form has everything (as per react-bootstrap docs)
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     }
-//calls add user mutation to create a new user
+    //calls add user mutation to create a new user
     try {
       const { data } = await addUser({
         variables: { ...userFormData },
@@ -85,23 +87,39 @@ const SignupForm = () => {
         </Alert>
         <h2 className="text-center">New User? Sign Up!</h2>
         <Form.Group>
-          <Form.Label htmlFor="username" className="formText">
-            Username
+          <Form.Label htmlFor="firstName" className="formText">
+            First Name
           </Form.Label>
           <Form.Control
             type="text"
             className="input"
-            placeholder="Your username"
-            name="username"
+            placeholder="First Name"
+            name="firstName"
             onChange={handleInputChange}
-            value={userFormData.username}
+            value={userFormData.firstName}
             required
           />
           <Form.Control.Feedback type="invalid">
-            Username is required!
+            Your first name is required!
           </Form.Control.Feedback>
         </Form.Group>
-
+        <Form.Group>
+          <Form.Label htmlFor="lastName" className="formText">
+            Last Name
+          </Form.Label>
+          <Form.Control
+            type="text"
+            className="input"
+            placeholder="Last Name"
+            name="lastName"
+            onChange={handleInputChange}
+            value={userFormData.lastName}
+            required
+          />
+          <Form.Control.Feedback type="invalid">
+            Your last name is required!
+          </Form.Control.Feedback>
+        </Form.Group>
         <Form.Group>
           <Form.Label htmlFor="email" className="formText">
             Email
@@ -140,12 +158,14 @@ const SignupForm = () => {
         <Button
           disabled={
             !(
-              userFormData.username &&
+              userFormData.firstName &&
+              userFormData.lastName &&
               userFormData.email &&
               userFormData.password
             )
           }
           type="submit"
+          onClick={(userFormData.isAdmin = false)}
           variant="success"
           className="signupSubmit"
         >
@@ -155,5 +175,5 @@ const SignupForm = () => {
     </div>
   );
 };
-//exports signupform component; imported to the login page 
+//exports signupform component; imported to the login page
 export default SignupForm;
