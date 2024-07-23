@@ -38,17 +38,17 @@
   font-size: 50px;
   text-align: center;
   margin: 40px 0px 0px 0px;
-  font-style: italic;
+  font: Sorts Mill Goudy;
 }
 
 .subtitle {
   font-size: 30px;
   text-align: center;
-  color: rgb(7, 135, 140);
+  color: rgb(223, 19, 19);
   font-family: fantasy, sans-serif;
 }
 
 .speed {
-  color: rgba(184, 15, 15, 0.564);
+  color: black;
  
 }

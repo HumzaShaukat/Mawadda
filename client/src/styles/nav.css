@@ -21,14 +21,12 @@
 }
 
 .nav-item a:hover {
-  color: rgba(44, 2, 215, 0.867);
+  color: hsla(var(--lightAccent-hsl),1)
 }
 
 .logo {
-  width: 150px;
-  height: 110px;
-  border-radius: 100%;
-  border: dashed  2px rgb(211, 38, 139);
+  width: 8vw;
+  height: 8vw;
 }
 
 .collapse {

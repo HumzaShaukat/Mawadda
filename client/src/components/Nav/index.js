@@ -4,7 +4,7 @@ import auth from "../../utils/auth";
 //imports corresponding css styling file
 import "../../styles/nav.css";
 //imports application's logo
-import logo from "../../image/logo.png";
+import nbic from "../../image/nbic.png";
 //imports needed to assist with routing
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
@@ -22,7 +22,7 @@ function Navigation() {
       <div className="container-fluid ">
         <Link className="navbar-brand" to="/">
           <div className="icon">
-            <img className="logo" src={logo} alt="logo" />
+            <img className="logo" src={nbic} alt="logo" />
           </div>
         </Link>
         <button
@@ -52,22 +52,6 @@ function Navigation() {
               <li className="nav-item">
                 <Link className="nav-link" to="/profiles">
                   Find Users
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/chat">
-                  Chat
-                </Link>
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="/editbio">
-                  Edit Bio
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link className="nav-link" to="/editpreference">
-                  Edit Preferences
                 </Link>
               </li>
               {auth.loggedIn() ? (

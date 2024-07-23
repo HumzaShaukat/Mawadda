@@ -17,7 +17,7 @@ module.exports = {
     if (!token) {
       return req;
     }
-//verifies user's token and auth, sets token valid for 2 hours
+    //verifies user's token and auth, sets token valid for 2 hours
     try {
       const { data } = jwt.verify(token, secret, { maxAge: expiration });
       req.user = data;
@@ -28,8 +28,8 @@ module.exports = {
     return req;
   },
   //establishes relationship of token to user login data
-  signToken: function ({ email, username, _id }) {
-    const payload = { email, username, _id };
+  signToken: function ({ email, _id, firstName, lastName, isAdmin }) {
+    const payload = { email, _id, firstName, lastName, isAdmin };
     return jwt.sign({ data: payload }, secret, { expiresIn: expiration });
   },
 };

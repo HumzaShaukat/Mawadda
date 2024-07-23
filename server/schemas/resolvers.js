@@ -9,71 +9,55 @@ const s3 = require("../config/s3config");
 //imports gql upload for photo upload use
 const { GraphQLUpload } = require("graphql-upload-minimal");
 
-
 const resolvers = {
   Query: {
     //query for data of yourself as a user
     me: async (_parent, _args, context) => {
       //needs args unless you are passing an parameter as the args. Context is the third parameter
       if (context.user) {
-        return User.findOne({ _id: context.user._id })
-          .populate({ path: "connections", select: "-__V" })
-          .populate({ path: "connectRequest", select: "-__V" });
+        return User.findOne({ _id: context.user._id });
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-  //query for a user connection
-    connection: async (_parent, { userId }, context) => {
-      if (context.user) {
-        return User.findOne({ _id: userId });
-      }
-      throw new AuthenticationError(
-        "You need to be logged in to view another profile!"
-      );
-    },
-    //query for other user's bio data 
+    //query for other user's bio data
     bios: async () => {
       return Bio.find().populate("userId");
     },
-//query for other users data
+    //query for other users data
     users: async () => {
       return User.find();
     },
-//query for your bio data
+    //query for your bio data
     bio: async (_parent, args, context) => {
       if (context.user) {
         return await Bio.findOne({ userId: context.user._id });
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-//query for bio data from a potential connection
-    connectionBio: async (_parent, { userId }, context) => {
-      if (context.user) {
-        return Bio.findOne({ userId: userId });
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
-//query for user preference data
+    //query for user preference data
     preference: async (_parent, args, context) => {
       if (context.user) {
         return await Preference.findOne({ userId: context.user._id });
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-//query for a connections preference data
-    connectionPreference: async (_parent, { userId }, context) => {
-      if (context.user) {
-        return await Preference.findOne({ userId: userId });
-      }
-      throw new AuthenticationError("You need to be logged in!");
-    },
   },
+  //query for a connections preference data
   Upload: GraphQLUpload,
   //object of mutations
   Mutation: {
     //mutation called to create a new user
-    addUser: async (_parent, { username, email, password }) => {
-      const user = await User.create({ username, email, password });
+    addUser: async (
+      _parent,
+      { firstName, lastName, email, password, isAdmin }
+    ) => {
+      const user = await User.create({
+        firstName,
+        lastName,
+        email,
+        password,
+        isAdmin,
+      });
       const token = signToken(user);
       return { token, user };
     },
@@ -98,36 +82,59 @@ const resolvers = {
     //mutation for creating a user's bio data
     addBio: async (
       _parent,
-      { interests, bio, age, gender, location, pictures },
+      {
+        age,
+        gender,
+        location,
+        country,
+        maritalStatus,
+        ethnicity,
+        education,
+        college,
+        major,
+        company,
+        job,
+        criminalRecord,
+        socials,
+        picture,
+        aspectsofFaith,
+        timeline,
+        bio,
+      },
       context
     ) => {
       if (context.user) {
         const newBio = await Bio.create({
-          interests,
-          bio,
           userId: context.user._id,
           age,
           gender,
           location,
-          pictures,
+          country,
+          maritalStatus,
+          ethnicity,
+          education,
+          college,
+          major,
+          company,
+          job,
+          criminalRecord,
+          socials,
+          picture,
+          aspectsofFaith,
+          timeline,
+          bio,
         });
 
         return newBio;
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-//mutation for creating a user's preference data
-    addPreference: async (
-      _parent,
-      { ageMin, ageMax, sexOrientation, gender, location },
-      context
-    ) => {
+    //mutation for creating a user's preference data
+    addPreference: async (_parent, { ageMin, ageMax, location }, context) => {
       if (context.user) {
         const newPreference = await Preference.create({
           ageMin,
           ageMax,
-          sexOrientation,
-          gender,
           location,
           userId: context.user._id,
         });
@@ -135,112 +142,55 @@ const resolvers = {
       }
       throw new AuthenticationError("You need to be logged in!");
     },
-
-    //mutation for creating a user connection request
-    addConnection: async (_parent, { userId }, context) => {
-      if (context.user) {
-        const addConnection = await User.findOneAndUpdate(
-          { _id: userId },
-          {
-            $push: { connectRequest: context.user._id },
-          },
-          { new: true }
-        );
-        return addConnection;
-      }
-      throw new AuthenticationError(
-        "You need to be logged in to add a connection"
-      );
-    },
-    //mutation for accepting a user connection request
-    acceptConnection: async (_parent, { userId }, context) => {
-      if (context.user) {
-        //adds the user connection to one user upon request acceptance
-        const newConnect = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $push: { connections: userId } },
-          { new: true }
-        );
-        //adds the user connection to the other user upon request acceptance
-        const newConnect2 = await User.findOneAndUpdate(
-          { _id: userId },
-          { $push: { connections: context.user._id } },
-          { new: true }
-        );
-        //removes the request because it was handled and no longer needed
-        const deleteRequest = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          { $pull: { connectRequest: userId } },
-          { new: true }
-        );
-        //returns both users data with their updated new connection to eachother and the request has been resolved and removed
-        return {
-          newConnect,
-          newConnect2,
-          deleteRequest,
-        };
-      }
-      throw new AuthenticationError(
-        "You need to be logged in to edit connections"
-      );
-    },
-    //mutation to handle a user denying another user's connection request
-    deleteConnectionRequest: async (_parent, { userId }, context) => {
-      if (context.user) {
-        const deleteConnectionRequest = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          //connect request is removed 
-          {
-            $pull: { connectRequest: userId },
-          },
-          { new: true }
-        );
-        return deleteConnectionRequest;
-      }
-      throw new AuthenticationError(
-        "You need to be logged in to edit connections"
-      );
-    },
-    //mutation to handle deleting an existing user connection
-    deleteConnection: async (_parent, { userId }, context) => {
-      if (context.user) {
-        //removes the connection between users from first user
-        const delConnection1 = await User.findOneAndUpdate(
-          { _id: context.user._id },
-          {
-            $pull: { connections: userId },
-          },
-          { new: true }
-        );
-        //removes the connection between users for second user
-        const delConnection2 = await User.findOneAndUpdate(
-          { _id: userId },
-          {
-            $pull: { connections: context.user._id },
-          },
-          { new: true }
-        );
-        //returns both users updated connection data where they are no longer connected
-        return {
-          delConnection1,
-          delConnection2,
-        };
-      }
-      throw new AuthenticationError(
-        "You need to be logged in to edit connections"
-      );
-    },
-    //mutation to handle updating a user's existing bio data 
+    //mutation to handle updating a user's existing bio data
     updateBio: async (
       _parent,
 
-      { interests, bio, age, gender, location, pictures },
+      {
+        age,
+        gender,
+        location,
+        country,
+        maritalStatus,
+        ethnicity,
+        education,
+        college,
+        major,
+        company,
+        job,
+        criminalRecord,
+        socials,
+        picture,
+        aspectsofFaith,
+        timeline,
+        bio,
+      },
       context
     ) => {
       if (context.user) {
         return await Bio.findOneAndUpdate(
           { userId: context.user._id },
-          { $set: { interests, bio, age, gender, location, pictures } },
+          {
+            $set: {
+              age,
+              gender,
+              location,
+              country,
+              maritalStatus,
+              ethnicity,
+              education,
+              college,
+              major,
+              company,
+              job,
+              criminalRecord,
+              socials,
+              picture,
+              aspectsofFaith,
+              timeline,
+              bio,
+            },
+          },
           { new: true }
         );
       }
@@ -249,13 +199,13 @@ const resolvers = {
     //mutation to handle updating a users existing preference data
     updatePreference: async (
       _parent,
-      { ageMin, ageMax, sexOrientation, gender, location },
+      { ageMin, ageMax, location },
       context
     ) => {
       if (context.user) {
         return await Preference.findOneAndUpdate(
           { userId: context.user._id },
-          { $set: { ageMin, ageMax, sexOrientation, gender, location } },
+          { $set: { ageMin, ageMax, location } },
           { new: true }
         );
       }
@@ -272,10 +222,10 @@ const resolvers = {
             ContentType: mimetype,
           })
           .promise();
-          //pushes the user's uploaded picture to their bio data
+        //pushes the user's uploaded picture to their bio data
         await Bio.findOneAndUpdate(
           { userId: context.user._id },
-          { $push: { pictures: Location } },
+          { $push: { picture: Location } },
           { new: true }
         );
         return {

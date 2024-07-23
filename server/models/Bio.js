@@ -1,21 +1,9 @@
-//imports schema and model 
+//imports schema and model
 //used to build data structure
 const { Schema, model } = require("mongoose");
 
-//creates bio schema 
+//creates bio schema
 const bioSchema = new Schema({
-  interests: [
-    {
-      type: String,
-      required: true,
-    },
-  ],
-  bio: {
-    type: String,
-    required: true,
-    minlength: 1,
-    maxlength: 280,
-  },
   userId: {
     type: Schema.Types.ObjectId,
     ref: "User",
@@ -23,7 +11,25 @@ const bioSchema = new Schema({
   age: { type: Number, required: true },
   gender: { type: String, required: true },
   location: { type: String, required: true },
-  pictures: [{ type: String }],
+  country: { type: String, required: true },
+  maritalStatus: { type: String, required: true },
+  ethnicity: { type: String, required: true },
+  education: { type: String, required: true },
+  college: { type: String, required: true },
+  major: { type: String, required: true },
+  company: { type: String, required: true },
+  job: { type: String, required: true },
+  criminalRecord: { type: Boolean, required: true },
+  socials: { type: String, required: true },
+  picture: { type: String, required: true },
+  aspectsOfFaith: [{ type: String, required: true }],
+  timeline: { type: String, required: true },
+  bio: {
+    type: String,
+    required: true,
+    minlength: 1,
+    maxlength: 280,
+  },
 });
 
 //sets the bio schema to a bio model

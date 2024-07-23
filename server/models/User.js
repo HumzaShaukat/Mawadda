@@ -1,4 +1,4 @@
-//imports schema and model 
+//imports schema and model
 //used to build data structure
 const { Schema, model } = require("mongoose");
 //imports bcrypt to protect user passwords
@@ -7,10 +7,13 @@ const bcrypt = require("bcrypt");
 //creates user schema
 const userSchema = new Schema(
   {
-    username: {
+    firstName: {
       type: String,
       required: true,
-      unique: true,
+    },
+    lastName: {
+      type: String,
+      required: true,
     },
     email: {
       type: String,
@@ -22,18 +25,11 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    connections: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
-    connectRequest: [
-      {
-        type: Schema.Types.ObjectId,
-        ref: "User",
-      },
-    ],
+    isAdmin: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   // set this to use virtual below
   {
